@@ -4,4 +4,5 @@ import android.net.Uri
 
 data class ImageItem(
     val uri: Uri,
+    val order : Int
 )
