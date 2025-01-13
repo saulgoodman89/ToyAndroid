@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ToyAndroid"
 include(":app")
+include(":imagepicker")
