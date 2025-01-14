@@ -3,6 +3,7 @@ package com.keg.imagepicker
 import android.net.Uri
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -34,12 +35,20 @@ fun ImagePickerScreen(viewModel: ImagePickerViewModel = ImagePickerViewModel()) 
 
     /*
         다중 이미지 선택이 가능한 안드로이드 제공 이미지 피커
-     */
+
     val pickImagesLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetMultipleContents()
     ) { uris: List<Uri> ->
         viewModel.addImages(uris)
+    }     */
+
+    // MultipleVisualMedia 사용. 기존과 동일.
+    val pickImagesLauncher = rememberLauncherForActivityResult(ActivityResultContracts.PickMultipleVisualMedia()
+    ) {
+        uris: List<Uri> ->
+        viewModel.addImages(uris)
     }
+
 
     Column(
         modifier = Modifier
@@ -51,7 +60,7 @@ fun ImagePickerScreen(viewModel: ImagePickerViewModel = ImagePickerViewModel()) 
 
         Button(
             onClick = {
-                pickImagesLauncher.launch("image/*")
+                pickImagesLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
             },
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
