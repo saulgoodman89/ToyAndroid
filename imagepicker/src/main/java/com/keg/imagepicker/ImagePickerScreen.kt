@@ -189,7 +189,8 @@ fun SelectedImageItem(uri: Uri) {
                     modifier = Modifier
                         .size(40.dp)
                         .clip(CircleShape)
-                        .background(androidx.compose.ui.graphics.Color.Red)
+                        .background(androidx.compose.ui.graphics.Color.Transparent)
+                        .border(width = 3.dp, color = androidx.compose.ui.graphics.Color.White , shape = CircleShape)
                         .layoutId("BADGE")
                 ) {
                     Text(
